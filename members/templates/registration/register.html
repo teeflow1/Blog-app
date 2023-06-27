@@ -1,0 +1,21 @@
+{% extends 'blogs/base.html' %}
+{% block title %} Register {% endblock %}
+
+{% block content %}
+
+<br/>
+<div style = "text-align:center; color:green;"> 
+<h1> Register Here. </h1>
+</div>
+
+<div class ="col-md-6 offset-md-3">
+<form method = 'POST'>
+    {% csrf_token %}
+    {{ form.as_p }}  
+    <div style = "text-align:center;">
+        <button class="btn btn-success">Register</button>
+    </div>
+</form>
+</div>
+
+{% endblock %}

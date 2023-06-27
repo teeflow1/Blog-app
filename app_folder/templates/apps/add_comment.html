@@ -1,0 +1,24 @@
+{% extends 'blogs/base.html' %}
+{% block title %} Comment on Blog Post {% endblock %}
+
+{% block content %}
+
+<br/>
+<h1 style = "text-align:center; color:green;"> Add Comment </h1>
+<div class ="col-md-5 offset-md-3">
+
+
+<form method = "POST">
+
+
+    {% csrf_token %}
+   
+    {{ form.as_p }}
+    <div style = "text-align:center;">
+     <button class="btn btn-success">Add Comment </button>
+    </div>
+   
+</form>
+</div>
+
+{% endblock %}

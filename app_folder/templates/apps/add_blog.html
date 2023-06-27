@@ -1,0 +1,30 @@
+{% extends 'blogs/base.html' %}
+{% block title %} Add Your Blog Post  {% endblock %}
+
+{% block content %}
+
+<br/>
+<h1 style = "text-align:center; color:green;"> Write Your Blog Post. </h1>
+
+
+
+<form method = "POST" enctype = "multipart/form-data">
+
+
+    {% csrf_token %}
+    {{ form.media}}
+    {{ form.as_p }}
+    <div style = "text-align:center;">
+     <button class="btn btn-success">Submit Post </button>
+    </div>
+   
+</form>
+</div>
+
+<script>
+    var name = "{{ user.id }}";
+    document.getElementById("admin"). value = name;
+
+</script>
+
+{% endblock %}

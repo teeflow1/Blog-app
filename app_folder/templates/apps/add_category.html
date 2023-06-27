@@ -1,0 +1,23 @@
+{% extends 'blogs/base.html' %}
+{% block title %} Add Your Blog Category  {% endblock %}
+
+{% block content %}
+
+<br/>
+<h1 style = "text-align:center; color:green;"> Write Your Category. </h1> <br/> <br/>
+<div class ="col-md-6 offset-md-3">
+<form method = 'POST'>
+    
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div style = "text-align:center;">
+     <button class="btn btn-success">Add Category </button>
+    </div>
+   
+</form>
+</div>
+
+
+
+{% endblock %}

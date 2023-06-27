@@ -1,0 +1,31 @@
+{% extends 'blogs/base.html' %}
+{% block title %} Create a New Profile PAge {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<br/>
+<h1 style = "text-align:center; color:green;"> Create Profile Page </h1>
+<div class ="col-md-6 offset-md-2">
+
+
+<form method = "POST" enctype = "multipart/form-data">
+
+
+    {% csrf_token %}
+    
+    {{ form.as_p }}
+    <div style = "text-align:center;">
+     <button class="btn btn-success">Create Profie Page </button>
+    </div>
+   
+</form>
+</div>
+
+{% else %}
+
+You are not allowed here and you know it.....
+
+{% endif %}
+
+
+{% endblock %}

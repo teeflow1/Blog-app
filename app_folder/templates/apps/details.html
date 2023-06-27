@@ -1,0 +1,134 @@
+{% extends 'blogs/base.html' %}
+{% load static %}
+{% block title %} {{ post.title_tag }} {% endblock %}
+{% block content %}
+
+<h1> {{ post.title }} </h1>
+
+
+<small> By: <strong>
+    {{ post.author.first_name }}
+    {{ post.author.last_name}} 
+    {{ post.posted_at }}
+            </strong> 
+</small>
+{% if user.is_authenticated %}
+{% if user.id == post.author.id %}
+<small>
+     <a href = "{% url 'edit_post' post.pk%}"> (Edit Post)</a>  <br/>
+     <a href = "{% url 'delete_post' post.pk%}"> (Delete Post)</a>
+</small>
+{% else %}
+<p style = "color:red;">You are not qualified to edit or delete this Blog!!!!!! </p>
+{% endif %}
+{% endif %}
+<br/>
+<hr>
+<strong>
+     {% if post.upload_image %}
+     <img src=" {{ post.upload_image.url }}">
+     {% endif %}
+     <br/><br/>
+     {{ post.body|safe }}
+
+     <!--<div class="card mb-3" >
+          <div class="row no-gutters">
+            <div class="col-md-2">
+              {% if post.author.profile.profile_pic%}
+              <img src="{{ post.author.profile.profile_pic.url }}" height=200 width = 200>
+
+              {% else %}
+              <img src = "{% static 'theblog/img/doom.png' %}">
+              {% endif %}
+            </div>
+            <div class="col-md-10">
+              <div class="card-body">
+                <h5 class="card-title">
+                    {{ post.author.first_name }}
+                    {{ post.author.last_name}} 
+               </h5>
+
+               <p class="small text-muted">
+                {% if post.author.profile.id %}
+                  <a href = "{% url 'show_profile_page' post.author.profile.id%}">Show Profile </a> |
+                {% endif %}
+                    {% if post.author.profile.website_url %}
+                   <a href = "{{ post.author.profile.website_url }}" target="_blank">Website 
+                   </a> | 
+                   {% endif %}
+
+                   {% if post.author.profile.facebook_url %}
+                    <a href = "{{ post.author.profile.facebook_url }}" target="_blank"> Facebook </a>| 
+
+                   {% endif %}
+
+                    {% if post.author.profile.twitter_url %}
+                    <a href = "{{ post.author.profile.twitter_url }}" target="_blank">Twitter
+                    </a> | 
+                    {% endif %}
+
+                    {% if post.author.profile.instagram_url %}
+                     <a href = "{{ post.author.profile.instagram_url }}" target="_blank">instagram </a>| 
+                     {% endif %}
+
+                     {% if post.author.profile.linkedin_url %}
+                    <a href = "{{ post.author.profile.linkedin_url }}" target="_blank">Linkedin </a>
+               {% endif %}
+               </p>
+              -->
+              
+                <p class="card-text">
+                    {{ post.author.profile.bio }}
+               </p>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+     
+
+</strong> 
+<br/> <br/>
+{% if user.is_authenticated %}
+
+<form method = 'POST' action = "{% url 'like_post' post.pk %}">
+
+  {% csrf_token %}
+  
+ <button type = "submit", name = "post_id", value = "{{ post.id }}", class ="btn btn-primary btn-sm">Like</button> -{{ total_likes }} Likes
+ 
+ </form>
+ 
+<div style = text-align:center;>
+<a href = "{% url 'home' %}" class ="btn btn-success"> Back </a>
+</div>
+
+
+<br/><br/>
+ <hr>
+   
+
+
+<h1> Comments </h1>
+{% if not post.comments.all %}
+          No comment Yet: <br/> <a href = "{% url 'add_post_comment' post.pk %}"> Add Comment </a>
+    {% else %}
+    <a href = "{% url 'add_post_comment' post.pk %}">Add Comments </a>
+    <br/><br/>
+    {% for comment in post.comments.all %}
+        <strong>
+        {{ comment.name }} -
+        {{ comment.date_posted }}
+        </strong>
+    <br/>
+          {{ comment.body }}
+        <br/><br/>
+    {% endfor %}
+    <a href = "{% url 'add_post_comment' post.pk %}">Add Comments </a>
+    <br/><br/>
+    {% endif %}
+
+
+
+{% endif %}
+{% endblock %}

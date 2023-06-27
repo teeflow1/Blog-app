@@ -1,0 +1,33 @@
+{% extends 'blogs/base.html' %}
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+<br/>
+<div style = "text-align:center; color:green;"> 
+<h1> Login </h1>
+</div>
+<br/>
+<div class ="col-md-6 offset-md-3">
+<form method = 'POST'>
+
+    {% csrf_token %}
+    <!--{{ form.as_p }}-->
+
+    <div class="form-group">
+       
+        <input type="text" class="form-control" name="username" placeholder = "username">
+        
+      </div>
+      <div class="form-group">
+        
+        <input type="password" class="form-control" name="password" placeholder = "password">
+      </div>
+    <div  style = "text-align:center;">
+        <button class="btn btn-success">Login</button>
+    </div>
+
+</form>
+</div>
+
+{% endblock %}

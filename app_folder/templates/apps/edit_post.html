@@ -1,0 +1,29 @@
+{% extends 'blogs/base.html' %}
+
+{% block title %} Update Post {% endblock %}
+
+{% block content %}
+
+<br/>
+{% if user.id == post.author.id %}
+<h1 style = "text-align:center; color:green;"> Update Post </h1>
+
+<br>
+<div class ="col-md-6 offset-md-2">
+<form method = "POST">
+
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    
+    <div style = "text-align:center;">
+    <button class="btn btn-success">Update Post</button>
+    </div>
+{% else %}
+You are not allowed here because you are not an authorized user 
+{% endif %}
+
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'blogs/base.html' %}
+{% block title %} Edit Settings {% endblock %}
+
+{% block content %}
+
+<br/>
+<div style = "text-align:center; color:green;"> 
+<h1> Edit Settings </h1>
+</div>
+<div class ="col-md-6 offset-md-4">
+<form method = 'POST'>
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <div  style = "text-align:center;">
+        <button class="btn btn-success">Update Settings</button>
+    </div>
+
+</form>
+</div>
+
+{% endblock %}
