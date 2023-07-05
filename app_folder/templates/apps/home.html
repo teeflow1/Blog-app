@@ -9,7 +9,7 @@
      
 <li> <a href = "{% url 'details' post.pk %}">{{ post.title }} </a>
 
-          <a href = "{% url 'details' post.pk %}">- {{ post.category }}</a>
+          <a href = "{% url 'category' post.category|slugify %}">- {{ post.category }}</a>
      -By:{{ post.author.first_name }}
       {{ post.author.last_name }} - 
       {{ post.posted_at }} -
@@ -38,8 +38,12 @@
 
 
 </ul>
+
+
 {% endfor %}
 
-
+<!--{% for item in cat_menu %}
+{{ item }} <br/>
+{% endfor %}-->
 
 {% endblock %}

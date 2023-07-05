@@ -1,0 +1,57 @@
+{% extends 'blogs/base.html' %}
+{% block title %} Good {% endblock %}
+{% block content %}
+<br/> 
+
+<!--<h1 class = "container " style = "color:green; text-align:center;"> TeeGist </h1> --> <br/>
+
+{% if category_posts %}
+
+        <h2> {{ cats }}   </h2>
+
+
+        <ul>
+            {% for post in category_posts %}
+        <li> <a href = "{% url 'details' post.pk %}">{{ post.title }} </a>
+
+                <!-- <a href = "{% url 'details' post.pk %}">- 
+                {{ post.category }}</a> -->
+            -By: {{ post.author.first_name }}
+            {{ post.author.last_name }} - 
+            {{ post.posted_at }} -
+
+            {% if user.is_authenticated %}
+            
+            <small>
+            <a href = "{% url 'edit_post' post.pk%}"> (Edit Post)</a>
+            </small>
+
+            
+            {% endif %}
+
+
+        <br/>
+        </li>
+        <!--<a href = "{% url 'details' post.pk %}">
+
+            <div class="alert alert-success" role="alert">
+                {{ post.snippet }}
+            </div>
+
+        </a>
+        -->
+
+        {{ post.body|slice:":30"|safe }} 
+
+
+        {% endfor %}
+
+</ul> 
+ 
+{% else %}
+    
+    Sorry this page doesn't exits
+
+{% endif %}
+
+{% endblock %}

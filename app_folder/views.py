@@ -28,10 +28,26 @@ class HomeView(ListView):
     ordering = ['-posted_at']
     
     
+    def get_context_data(self, *args, **kwargs):
+        cat_menu = Category.objects.all()
+        context = super(HomeView, self).get_context_data(*args, **kwargs)
+        context["cat_menu"] = cat_menu
+        return context
+    
+ 
+ 
+def CategoryView(request, cats):
+    category_posts = Post.objects.filter(category=cats.replace('-', ' '))
+    return render(request, 'apps/categories.html', {'cats':cats.title().replace('-', ' '), 'category_posts':category_posts})
+
+
+     
+       
     
 class DetailProjectView(DetailView):
     model = Post
     template_name = 'apps/details.html'
+    
     
     
     def get_context_data(self, *args, **kwargs):
@@ -48,6 +64,8 @@ class AddBlogView(CreateView):
     form_class = PostForm
     template_name = 'apps/add_blog.html'
     #fields = '__all__'
+    
+    
     
 class AddCommentView(CreateView):
     model = Comment
