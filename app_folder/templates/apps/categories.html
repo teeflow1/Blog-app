@@ -7,7 +7,7 @@
 
 {% if category_posts %}
 
-        <h2> {{ cats }} Category  </h2>
+        <h2> {{ cats }}   </h2>
 
 
         <ul>
@@ -17,7 +17,7 @@
                 <!-- <a href = "{% url 'details' post.pk %}">- 
                 {{ post.category }}</a> -->
             -By: {{ post.author.first_name }}
-            {{ post.author.last_name }} - 
+                {{ post.author.last_name }} - 
             {{ post.posted_at }} -
 
             {% if user.is_authenticated %}
