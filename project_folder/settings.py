@@ -12,7 +12,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+import environ
 
+env = environ.Env()
+
+environ.Env.read_env()
 
 
 
@@ -21,11 +25,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-import environ
 
-env = environ.Env()
-
-environ.Env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -168,7 +168,7 @@ LOGOUT_REDIRECT_URL = 'home'
 
 import dj_database_url 
 DATABASES = {
-    'default': dj_database_url.parse(env('DATABASE_URL'))
+    'default': dj_database_url.parse(env('DATABASES_URL'))
 }
 
 
