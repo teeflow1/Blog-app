@@ -164,9 +164,11 @@ LOGOUT_REDIRECT_URL = 'home'
 
 
 #ProgressSql Database
+
+
 import dj_database_url 
 DATABASES = {
-    'default': dj_database_url.parse(env('DATABASES_URL'))
+    'default': dj_database_url.parse(env('DATABASE_URL'))
 }
 
 
