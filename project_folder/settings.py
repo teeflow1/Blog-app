@@ -89,6 +89,18 @@ WSGI_APPLICATION = 'project_folder.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bloggy',
+        'USER': 'root',
+        'PASSWORD': 'Bimbo4wife',
+        'HOST': 'localhost',
+        'PORT':'3306',
+    }
+}
+'''
 
 DATABASES = {
     'default': {
@@ -96,7 +108,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -166,10 +177,38 @@ LOGOUT_REDIRECT_URL = 'home'
 
 #ProgressSql Database
 
-
+'''
 import dj_database_url 
+
+
 DATABASES = {
     'default': dj_database_url.parse(env('DATABASES_URL'))
 }
+'''
+
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'QFsjRyuRZXeNa2fFo4Ut',
+        'HOST': 'containers-us-west-72.railway.app',
+        'PORT': '7982'
+    }
+}
+'''
 
 
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'portfoliodatabase_qjbj',
+        'USER': 'portfoliodatabase_qjbj_user',
+        'PASSWORD': 'Ypyf8F3BQsnv78AR4AIiqM9avwij0LgX',
+        'HOST': 'dpg-ciju7e98g3nc2gea9pa0-a',
+        'PORT': '5432'
+    }
+}
+'''
