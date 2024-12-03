@@ -13,6 +13,8 @@ class CreateProfilePageView(CreateView):
     model = Profile
     template_name = 'registration/create_user_profile.html'
     form_class = ProfilePageForm
+
+fkf
     
     def form_valid(self, form):
         form.instance.user = self.request.user
