@@ -13,7 +13,7 @@ class CreateProfilePageView(CreateView):
     model = Profile
     template_name = 'registration/create_user_profile.html'
     form_class = ProfilePageForm
-    n
+    
 
 
     
